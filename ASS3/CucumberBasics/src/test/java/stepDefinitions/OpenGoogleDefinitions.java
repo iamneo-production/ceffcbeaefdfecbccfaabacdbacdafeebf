@@ -30,7 +30,7 @@ class OpenGoogleDefinitions
     public void userfeedback() throws InterruptedException {
 //Driver.findElement(By.xpath("//input[@id='le']")).sendKeys("nandhakumaaran142@gmail.com");
 //Thread.sleep(5000);
-        logger.info("User submit the Feedback")
+        logger.info("User submit the Feedback");
         Driver.findElement(By.xpath("//input[@id='lp']")).sendKeys("1234567890");
 
         Thread.sleep(5000);
