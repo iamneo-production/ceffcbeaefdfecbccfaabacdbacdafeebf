@@ -44,7 +44,7 @@ class OpenGoogleDefinitions
         Assert.assertTrue(dtr.contains("Login"));
     }
     @And("^admin can reply to the user$")
-    public void reply(){
+    public void reply{
     logger.info("admin can reply to the user");
 }
 
