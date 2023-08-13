@@ -30,7 +30,7 @@ class OpenGoogleDefinitions
     public void userfeedback() throws InterruptedException {
 //Driver.findElement(By.xpath("//input[@id='le']")).sendKeys("nandhakumaaran142@gmail.com");
 //Thread.sleep(5000);
-        logger.info("User submit the Feedback")
+        logger.info("User submit the Feedback");
         Driver.findElement(By.xpath("//input[@id='lp']")).sendKeys("1234567890");
 
         Thread.sleep(5000);
@@ -44,7 +44,7 @@ class OpenGoogleDefinitions
         Assert.assertTrue(dtr.contains("Login"));
     }
     @And("^admin can reply to the user$")
-    public void reply{
+    public void reply(){
     logger.info("admin can reply to the user");
 }
 
