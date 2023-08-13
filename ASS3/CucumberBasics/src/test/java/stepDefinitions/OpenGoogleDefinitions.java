@@ -15,7 +15,7 @@ class OpenGoogleDefinitions
 {
     WebDriver Driver;
 
-    @Given("^the user navigates to JavaTpoint.com$")
+    @Given("the user navigates to JavaTpoint.com")
     public void Setup()
     {
         WebDriverManager.chromedriver().setup();
