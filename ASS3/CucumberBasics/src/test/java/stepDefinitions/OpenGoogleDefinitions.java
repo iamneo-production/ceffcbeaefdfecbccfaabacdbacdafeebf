@@ -11,47 +11,49 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 
-class OpenGoogleDefinitions
-{
-    WebDriver Driver;
-
-    @Given("^the user navigates to JavaTpoint.com$")
-    public void Setup()
-    {
-        WebDriverManager.chromedriver().setup();
-        Driver=new ChromeDriver();
-        Driver.get("https://www.javatpoint.com/");
+public class StepDefinitions {
+    private WebDriver driver;
+  
+    @Given("the user navigates to JavaTpoint.com")
+    public void goToJavaTpoint() {
+      driver = new ChromeDriver();
+      driver.get("https://www.javatpoint.com");
     }
-    @When("^the user clicks on Feedback, then the Feedback page opens$")
-    public void feedbackpage() {
-        logger.info("navigates to feedback page");
+  
+    @When("the user clicks on Feedback")
+    public void clickFeedbackButton() {
+      WebElement feedbackButton = driver.findElement(By.cssSelector("#feedback-button"));
+      feedbackButton.click();
     }
-    @And("^the user submits feedback message$")
-    public void userfeedback() throws InterruptedException {
-//Driver.findElement(By.xpath("//input[@id='le']")).sendKeys("nandhakumaaran142@gmail.com");
-//Thread.sleep(5000);
-        logger.info("User submit the Feedback");
-        Driver.findElement(By.xpath("//input[@id='lp']")).sendKeys("1234567890");
-
-        Thread.sleep(5000);
-        Driver.findElement(By.xpath("//button[contains(text(),'Submit')]")).click();
-
+  
+    @Then("the Feedback page opens")
+    public void verifyFeedbackPage() {
+      WebElement feedbackForm = driver.findElement(By.cssSelector("#feedback-form"));
+      assertTrue(feedbackForm.isDisplayed());
     }
-    @Then("^feedback should be received on the admin page$")
-    public void validate() {
-        System.out.print("you had got an feedback");
-        String dtr= Driver.getTitle();
-        Assert.assertTrue(dtr.contains("Login"));
+  
+    @And("the user submits feedback message")
+    public void submitFeedbackMessage() {
+      WebElement feedbackMessage = driver.findElement(By.cssSelector("#feedback-message"));
+      feedbackMessage.sendKeys("This is a test feedback message");
+      WebElement submitButton = driver.findElement(By.cssSelector("#submit-button"));
+      submitButton.click();
     }
-    @And("^admin can reply to the user$")
-    public void reply{
-    logger.info("admin can reply to the user");
-}
-
-
-
-}
-
-
-
-
+  
+    @Then("feedback should be received on the admin page")
+    public void verifyFeedbackReceived() {
+      WebElement feedbackNotification = driver.findElement(By.cssSelector("#feedback-notification"));
+      assertTrue(feedbackNotification.isDisplayed());
+      assertEquals("Feedback received!", feedbackNotification.getText());
+    }
+  
+    @And("admin can reply to the user")
+    public void replyToFeedback() {
+      WebElement replyButton = driver.findElement(By.cssSelector("#reply-button"));
+      replyButton.click();
+      WebElement replyMessage = driver.findElement(By.cssSelector("#reply-message"));
+      replyMessage.sendKeys("Thank you for your feedback!");
+      WebElement sendReplyButton = driver.findElement(By.cssSelector("#send-reply-button"));
+      sendReplyButton.click();
+    }
+  }
